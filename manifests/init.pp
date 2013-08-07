@@ -37,5 +37,6 @@
 #
 class iptables-persistent {
 
+  package { 'iptables-persistent': ensure => present }
 
 }
