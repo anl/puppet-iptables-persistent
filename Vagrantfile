@@ -73,9 +73,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # #               Managed by Puppet.\n"
   # # }
   #
+
+  # To prevent a "Could not find class" error the containing directory
+  # of this module must match the module name ("iptables-persistent")
+  # - note that for namespacing on GitHub, the repo is named
+  # "puppet-iptables-persistent", so this may require manual action.
+
   config.vm.provision :puppet do |puppet|
-    puppet.manifests_path = "manifests"
-    puppet.manifest_file  = "init.pp"
+    puppet.manifests_path = "vagrant"
+    puppet.manifest_file = "vagrant.pp"
+    puppet.module_path = "../"
   end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
