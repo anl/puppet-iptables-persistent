@@ -45,6 +45,7 @@ class iptables_persistent {
     mode    => '0444',
     content => template('iptables_persistent/rules.v4.erb'),
     notify  => Service['iptables-persistent'],
+    require => Package['iptables-persistent'],
   }
 
   file { '/etc/iptables/rules.v6':
@@ -53,6 +54,7 @@ class iptables_persistent {
     mode    => '0444',
     content => template('iptables_persistent/rules.v6.erb'),
     notify  => Service['iptables-persistent'],
+    require => Package['iptables-persistent'],
   }
 
   service { 'iptables-persistent':
