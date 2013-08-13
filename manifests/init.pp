@@ -39,4 +39,25 @@ class iptables-persistent {
 
   package { 'iptables-persistent': ensure => present }
 
+  file { '/etc/iptables/rules.v4':
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0444',
+    content => template('iptables-persistent/rules.v4.erb'),
+    notify  => Service['iptables-persistent'],
+  }
+
+  file { '/etc/iptables/rules.v6':
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0444',
+    content => template('iptables-persistent/rules.v6.erb'),
+    notify  => Service['iptables-persistent'],
+  }
+
+  service { 'iptables-persistent':
+    enable    => true,
+    hasstatus => false,
+    status    => '/sbin/iptables -L',
+  }
 }
