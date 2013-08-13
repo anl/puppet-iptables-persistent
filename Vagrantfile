@@ -75,9 +75,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
 
   # To prevent a "Could not find class" error the containing directory
-  # of this module must match the module name ("iptables-persistent")
+  # of this module must match the module name ("iptables_persistent")
   # - note that for namespacing on GitHub, the repo is named
-  # "puppet-iptables-persistent", so this may require manual action.
+  # "puppet-iptables_persistent", so this may require manual action.
 
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "vagrant"

@@ -1,6 +1,6 @@
-# == Class: iptables-persistent
+# == Class: iptables_persistent
 #
-# Full description of class iptables-persistent here.
+# Full description of class iptables_persistent here.
 #
 # === Parameters
 #
@@ -23,7 +23,7 @@
 #
 # === Examples
 #
-#  class { iptables-persistent:
+#  class { iptables_persistent:
 #    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
 #  }
 #
@@ -35,7 +35,7 @@
 #
 # Copyright 2013 Your name here, unless otherwise noted.
 #
-class iptables-persistent {
+class iptables_persistent {
 
   package { 'iptables-persistent': ensure => present }
 
@@ -43,7 +43,7 @@ class iptables-persistent {
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
-    content => template('iptables-persistent/rules.v4.erb'),
+    content => template('iptables_persistent/rules.v4.erb'),
     notify  => Service['iptables-persistent'],
   }
 
@@ -51,7 +51,7 @@ class iptables-persistent {
     owner   => 'root',
     group   => 'root',
     mode    => '0444',
-    content => template('iptables-persistent/rules.v6.erb'),
+    content => template('iptables_persistent/rules.v6.erb'),
     notify  => Service['iptables-persistent'],
   }
 

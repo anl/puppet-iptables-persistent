@@ -1,4 +1,4 @@
-name    'puppet-iptables-persistent'
+name    'anl-iptables_persistent'
 version '0.0.1'
 source 'UNKNOWN'
 author 'puppet'

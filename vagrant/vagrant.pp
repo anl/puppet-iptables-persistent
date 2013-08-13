@@ -1,2 +1,2 @@
 # Include this module
-include iptables-persistent
+include iptables_persistent

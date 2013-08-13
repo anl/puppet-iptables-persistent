@@ -1,6 +1,6 @@
-iptables-persistent
+iptables_persistent
 
-This is the iptables-persistent module.
+This is the iptables_persistent module.
 
 License
 -------
