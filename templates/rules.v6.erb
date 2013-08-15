@@ -3,4 +3,11 @@
 :INPUT ACCEPT [0:0]
 :FORWARD ACCEPT [0:0]
 :OUTPUT ACCEPT [0:0]
+-A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -p icmpv6 -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m rt --rt-type 0 -j DROP
+-A INPUT -s fe80::/10 -j ACCEPT
+-A INPUT -d ff00::/8 -j ACCEPT
+-A INPUT -j DROP
 COMMIT
