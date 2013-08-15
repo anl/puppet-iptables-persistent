@@ -9,5 +9,12 @@
 -A INPUT -m rt --rt-type 0 -j DROP
 -A INPUT -s fe80::/10 -j ACCEPT
 -A INPUT -d ff00::/8 -j ACCEPT
+<% permit_in.each do |i| -%>
+-A INPUT -p tcp -m tcp --dport <%= i %> -j ACCEPT
+<% end -%>
+<% limit_out.each do |l| -%>
+-A OUTPUT -p tcp --dport <%= l['port'] %> -m state --state NEW -m limit --limit <%= l['rate'] %> --limit-burst <%= l['burst'] %> -j ACCEPT
+-A OUTPUT -p tcp --dport <%= l['port'] %> -o eth0 -m state --state NEW -j DROP
+<% end -%>
 -A INPUT -j DROP
 COMMIT
