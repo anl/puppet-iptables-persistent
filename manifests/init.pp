@@ -36,7 +36,8 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class iptables_persistent (
-  $inbound = [ 22 ]
+  $limit_out = [],
+  $permit_in = [ 22 ]
 ) {
 
   package { 'iptables-persistent': ensure => present }
