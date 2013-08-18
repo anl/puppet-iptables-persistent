@@ -7,7 +7,9 @@
 -A INPUT -p icmpv6 -j ACCEPT
 -A INPUT -i lo -j ACCEPT
 -A INPUT -m rt --rt-type 0 -j DROP
--A INPUT -s fe80::/10 -j ACCEPT
+<% hosts_open.each do |h| -%>
+-A INPUT -s <%= h %> -j ACCEPT
+<% end -%>
 -A INPUT -d ff00::/8 -j ACCEPT
 <% permit_in.each do |i| -%>
 -A INPUT -p tcp -m tcp --dport <%= i %> -j ACCEPT

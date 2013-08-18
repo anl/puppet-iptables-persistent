@@ -36,6 +36,7 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class iptables_persistent (
+  $hosts_open = [],
   $limit_out = [],
   $permit_in = [ 22 ]
 ) {
