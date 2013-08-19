@@ -1,6 +1,9 @@
 # == Class: iptables_persistent
 #
-# Full description of class iptables_persistent here.
+# Configure iptables firewall (ipv4 and ipv6) using the iptables-persistent
+# package on Ubuntu.
+#
+# Requires puppetlabs/stdlib module.
 #
 # === Parameters
 #
@@ -29,17 +32,35 @@
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Andrew Leonard
 #
 # === Copyright
 #
-# Copyright 2013 Your name here, unless otherwise noted.
+# Copyright 2013 Andrew Leonard
 #
 class iptables_persistent (
   $hosts_open = [],
   $limit_out = [],
   $permit_in = [ 22 ]
 ) {
+
+  unless is_array($hosts_open) {
+    fail('hosts_open must be an array')
+  }
+
+  if is_array($limit_out) {
+    if size($limit_out) > 0 {
+      unless is_hash($limit_out[0]) {
+        fail('limit_out array members must be hashes')
+      }
+    }
+  } else {
+    fail('limit_out must be an array')
+  }
+
+  unless is_array($permit_in) {
+    fail('permit_in must be an array')
+  }
 
   package { 'iptables-persistent': ensure => present }
 
